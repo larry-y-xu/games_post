@@ -41,6 +41,7 @@ public class GameNim extends Game {
       if (oldState.pile >= i) {
         StateNim successor_state = new StateNim(oldState);
         successor_state.changeState(oldState, i);
+        successor_state.player = (state.player==0 ? 1 : 0);
         successors.add(successor_state);
       }
     }
@@ -50,7 +51,7 @@ public class GameNim extends Game {
   public double eval(State state) {
     if (isWinState(state)) {
       int previous_player = (state.player==0 ? 1 : 0);
-      if (previous_player == 0) {
+      if (previous_player == 1) {
         return WinningScore;
       }
       else {
@@ -90,10 +91,11 @@ public class GameNim extends Game {
       }
 
       game.currentState = nextState;
+      game.currentState.player = (game.currentState.player==0 ? 1 : 0);
 
       //check who wins
       if ( game.isWinState(game.currentState) ) {
-        if (game.currentState.player == 1) //i.e. last move was by the computer
+        if (game.currentState.player == 0) //i.e. last move was by the computer
           System.out.println("Computer wins!");
         else
           System.out.println("You win!");

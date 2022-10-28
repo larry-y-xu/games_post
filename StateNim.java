@@ -20,11 +20,10 @@ public class StateNim extends State {
     return this.pile;
   }
 
-  //takes in the old state and the amount of coins we would like to remove, and returns the new state with the player already altered
+  //takes in the old state and the amount of coins we would like to remove, and returns the new state=
   //does not verify whether the removal amount is valid
   public void changeState(StateNim state, int removalAmount) {
     this.pile = this.pile - removalAmount;
-    player = player==0 ? 1 : 0;
   }
 
   public String toString() {
