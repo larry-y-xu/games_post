@@ -13,7 +13,7 @@ public class GameNim extends Game {
   }
 
   public boolean isWinState(State state) {
-    StateTicTacToe currentState = (StateTicTacToe) state;
+    StateNim currentState = (StateNim) state;
     //we just check if the pile is empty
     if (currentState.getPileSize() == 0) {
       return true;
@@ -38,7 +38,7 @@ public class GameNim extends Game {
 
     //so, we want to remove 1, 2 and 3 coins as seperate states, provided the pile is large enough
     for (int i = 1; i<4; i++) {
-      if (oldState.pile > i) {
+      if (oldState.pile >= i) {
         StateNim successor_state = new StateNim(oldState);
         successor_state.changeState(oldState, i);
         successors.add(successor_state);
@@ -73,7 +73,7 @@ public class GameNim extends Game {
       switch(game.currentState.player) {
         //human
         case 1:
-          System.out.print("Enter the number of *valid* stones you would like to remove");
+          System.out.print("Enter the number of *valid* stones you would like to remove: ");
           int numStones = Integer.parseInt( in.readLine() );
           nextState = new StateNim((StateNim)game.currentState);
           nextState.player = 1;
