@@ -6,6 +6,7 @@ public class StateNim extends State {
 
   public StateNim() {
     this.pile = 13;
+    player = 1;
   }
 
   public StateNim(StateNim state) {
