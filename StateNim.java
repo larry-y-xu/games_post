@@ -16,6 +16,10 @@ public class StateNim extends State {
     player = state.player;
   }
 
+  public int getPileSize() {
+    return this.pile;
+  }
+
   //takes in the old state and the amount of coins we would like to remove, and returns the new state with the player already altered
   //does not verify whether the removal amount is valid
   public void changeState(StateNim state, int removalAmount) {

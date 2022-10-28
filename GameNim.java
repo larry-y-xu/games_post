@@ -6,14 +6,16 @@ import java.util.Set;
 public class GameNim extends Game {
   int WinningScore = 10;
   int LosingScore = -10;
+  int midGame = 0;
 
   public GameNim() {
     currentState = new StateNim();
   }
 
   public boolean isWinState(State state) {
+    StateTicTacToe currentState = (StateTicTacToe) state;
     //we just check if the pile is empty
-    if (state.pile == 0){
+    if (currentState.getPileSize() == 0) {
       return true;
     }
     else {
@@ -51,13 +53,15 @@ public class GameNim extends Game {
       if (previous_player == 0) {
         return WinningScore;
       }
-      else:
+      else {
         return LosingScore;
+      }
     }
+    return midGame;
   }
 
-  public state void main(String[] args) throws Exception {
-    Game game = new GameNim;
+  public static void main(String[] args) throws Exception {
+    Game game = new GameNim();
     Search search = new Search(game);
     int depth = 8; //subject to change
 
@@ -73,7 +77,7 @@ public class GameNim extends Game {
           int numStones = Integer.parseInt( in.readLine() );
           nextState = new StateNim((StateNim)game.currentState);
           nextState.player = 1;
-          nextState.changeState(currentState, numStones);
+          nextState.changeState(nextState, numStones);
           System.out.println("Human: \n" + nextState);
           break;
         
